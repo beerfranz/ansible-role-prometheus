@@ -11,3 +11,5 @@ prometheus_docker_networks:
 prometheus_docker_ports:
 
 domain: ansible-test.local
+https: false
+letsencrypt_certificate: false
