@@ -1,0 +1,11 @@
+prometheus_install: true
+prometheus_configure: true
+
+prometheus_install_type: docker-compose
+prometheus_install_dir: /appli/prometheus
+
+prometheus_docker_image: prom/prometheus:v2.16.0
+prometheus_docker_networks:
+  - ansible-test
+
+prometheus_domain: ansible-test.local

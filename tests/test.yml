@@ -1,0 +1,33 @@
+---
+- hosts: all
+  roles:
+    - role: ../ansible-role-prometheus/
+      vars:
+        install_dir: /ansible-test/prometheus
+
+  pre_tasks:
+    - name: Add prometheus host in /etc/hosts
+      become: true
+      lineinfile:
+        path: /etc/hosts
+        regexp: "prometheus.{{ domain }}"
+        line: "127.0.0.1  prometheus.{{ domain }}"
+
+  tasks:
+
+    - name: Wait for container is healthy
+      become: true
+      shell:
+        chdir: "{{ prometheus_install_dir }}"
+        cmd: docker-compose ps prometheus | grep "(healthy)"
+      register: cmd_res
+      retries: 20
+      delay: 15
+      until: cmd_res.rc == 0
+
+  post_tasks:
+    - name: Stop prometheus
+      become: true
+      docker_compose:
+        project_src: "{{ prometheus_install_dir }}"
+        state: absent
