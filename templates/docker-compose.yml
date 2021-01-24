@@ -32,8 +32,11 @@ services:
       - {{ network }}
       {% endfor %}
 
+    healthcheck:
+      test: "wget http://localhost:9090/-/healthy -q -O - > /dev/null 2>&1"
+
 networks:
-  {% for network in docker_networks -%}
+  {% for network in prometheus_docker_networks -%}
   {{ network }}:
     external: true
   {% endfor %}

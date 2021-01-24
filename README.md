@@ -3,7 +3,7 @@ Ansible role. Install and configure Prometheus.
 
 Prometheus is a montoring & alerting tool: https://prometheus.io/
 
-Prometheus IHM is accessible with: http://prometheus.ansible-test.local
+Prometheus web UI is disable.
 
 ## Installation
 
