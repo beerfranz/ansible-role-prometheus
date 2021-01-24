@@ -33,7 +33,7 @@ services:
       {% endfor %}
 
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/-/healthy"]
+      test: ["CMD", "curl", "-f", "http://localhost:9090/-/healthy"]
 
 networks:
   {% for network in prometheus_docker_networks -%}
