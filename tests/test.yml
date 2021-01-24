@@ -21,8 +21,8 @@
         chdir: "{{ prometheus_install_dir }}"
         cmd: docker-compose ps prometheus | grep "(healthy)"
       register: cmd_res
-      retries: 20
-      delay: 15
+      retries: 10
+      delay: 5
       until: cmd_res.rc == 0
 
   post_tasks:
