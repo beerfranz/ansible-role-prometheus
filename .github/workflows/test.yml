@@ -16,16 +16,21 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      # - name: Set up Python 3.7
-      #   uses: actions/setup-python@v1
-      #   with:
-      #     python-version: 3.7
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
 
       - name: Install dependencies
         run: |
           python --version
           which python
+          python3 --version
+          which python3
+          pip --version
           which pip
+          pip3 --version
+          which pip3
           python -m pip install --upgrade pip
           pip install ansible==2.9.2 requests docker docker-compose
 
