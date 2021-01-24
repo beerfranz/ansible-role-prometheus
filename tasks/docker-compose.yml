@@ -5,11 +5,24 @@
     path: "{{ prometheus_install_dir }}"
     state: directory
 
+- name: Create config directory
+  become: true
+  file:
+    path: "{{ prometheus_install_dir }}/cfg"
+    state: directory
+
 - name: Install docker-compose
   become: true
   template:
     src: "docker-compose.yml"
     dest: "{{ prometheus_install_dir }}/docker-compose.yml"
+    mode: '0644'
+
+- name: Install prometheus config
+  become: true
+  template:
+    src: "prometheus.yml"
+    dest: "{{ prometheus_install_dir }}/cfg/prometheus.yml"
     mode: '0644'
 
 - name: Create docker networks
