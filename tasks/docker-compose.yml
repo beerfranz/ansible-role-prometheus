@@ -11,6 +11,14 @@
     path: "{{ prometheus_install_dir }}/cfg"
     state: directory
 
+- name: Create data directory
+  become: true
+  file:
+    path: "{{ prometheus_install_dir }}/data"
+    state: directory
+    owner: nobody
+    group: nogroup
+
 - name: Install docker-compose
   become: true
   template:
