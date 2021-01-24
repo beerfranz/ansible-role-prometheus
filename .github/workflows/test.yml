@@ -31,7 +31,7 @@ jobs:
           which pip
           pip3 --version
           which pip3
-          python -m pip install --upgrade pip
+          # python -m pip install --upgrade pip
           pip install ansible==2.9.2 requests docker docker-compose
 
       - name: Run test
